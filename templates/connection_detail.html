@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div>
+        <a class="btn btn-default" href="{% url 'connection_edit' pk=connection.pk %}">Edit</a>
+        <h2>{{ connection.name }}</h2>
+        <p>{{ connection.host }}</p>
+    </div>
+</div>
+{% endblock %}
+
