@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 
 from .models import Connection
 from .forms import ConnectionForm
 
 # Create your views here.
 def connection_list(request):
-    return render(request, 'connection_list.html', {})
+    connections = Connection.objects.all().order_by('id')
+    paginator = Paginator(connections, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'connection_list.html', {'page_obj': page_obj})
 
 def connection_detail(request, pk):
     connection = get_object_or_404(Connection, pk=pk)
