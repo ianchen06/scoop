@@ -7,5 +7,7 @@ class ConnectionForm(forms.ModelForm):
         model = Connection
         fields = '__all__'
     def __init__(self, *args, **kwargs):
+        optional_fields = kwargs.pop("optional_fields", [])
         super(ConnectionForm, self).__init__(*args, **kwargs)
-        self.fields['authorized_users'].required = False
+        for f in optional_fields:
+            self.fields[f].required = False
