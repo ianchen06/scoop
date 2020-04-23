@@ -21,5 +21,7 @@ class ConnectionForm(forms.ModelForm):
         if current_user:
             if not current_user.is_superuser:
                 self.fields['authorized_users'].disabled = True
+            else:
+                self.fields['password'].required = False
 
 
