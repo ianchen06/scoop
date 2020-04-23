@@ -26,6 +26,7 @@
       </li>
     </ul>
     {% if user.is_authenticated %}
+    <span class="text-light mr-2">Hi, {{ user.username }}</span>
     <a class="btn btn-outline-light my-2 my-sm-0" href="{% url 'logout' %}">Log Out</a>
     {% else %}
     <a class="btn btn-outline-light my-2 my-sm-0" href="{% url 'login' %}">Log In</a>

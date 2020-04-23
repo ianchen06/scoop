@@ -34,7 +34,9 @@ class ConnectionUpdate(UpdateView):
     form_class = ConnectionForm
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs.update({'optional_fields': ['authorized_users']})
+        kwargs.update({'optional_fields': ['authorized_users'],
+            'current_user': self.request.user
+            })
         return kwargs
 
 class ConnectionDelete(DeleteView):
