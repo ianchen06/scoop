@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container-fluid">
   <ul>
-  {% for row in page_obj %}
+  {% for row in connection_list %}
     <li>{{ row.name  }}</li>
   {% endfor %}
   </ul>

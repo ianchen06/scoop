@@ -1,11 +1,11 @@
 from django.urls import path
 
-from . import views
+import webapp.views as v
 
 urlpatterns = [
-    path('connection/', views.connection_list, name='connection_list'),
-    path('connection/<int:pk>/edit/', views.connection_edit, name='connection_edit'),
-    path('connection/<int:pk>/', views.connection_detail, name='connection_detail'),
-    path('connection/new/', views.connection_new, name='connection_new'),
+    path('connections/', v.ConnectionList.as_view(), name='connection-list'),
+    path('connections/create/', v.ConnectionCreate.as_view(), name='connection-create'),
+    path('connections/<int:pk>/', v.ConnectionDetailView.as_view(), name='connection-detail'),
+    path('connections/<int:pk>/update/', v.ConnectionUpdate.as_view(), name='connection-update'),
+    path('connections/<int:pk>/delete/', v.ConnectionDelete.as_view(), name='connection-delete'),
 ]
-
