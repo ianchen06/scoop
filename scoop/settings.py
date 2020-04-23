@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'webapp.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'scoop.urls'
@@ -127,5 +128,6 @@ DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
