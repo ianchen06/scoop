@@ -2,14 +2,21 @@
 {% load crispy_forms_tags %}
 {% load render_table from django_tables2 %}
 {% block content %}
-<div class="container">
-  {% if filter %}
-    <form action="" method="get" class="form-inline mb-2">
-      {{ filter.form | crispy }}
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  {% endif %}
-  {% render_table table %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      {% if filter %}
+      <form action="" method="get">
+        {{ filter.form | crispy }}
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      {% endif %}
+    </div>
+    <div class="col-10">
+      <a class="btn btn-primary float-right mb-2" href="{% url 'connection-create' %}">New Connection</a>
+      {% render_table table %}
+    </div>
+  </div>
 </div>
 {% endblock %}
 

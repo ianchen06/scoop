@@ -7,4 +7,4 @@ class ConnectionTable(tables.Table):
     name = tables.Column(linkify=("connection-update", [tables.A("pk")]))
     class Meta:
         model = Connection
-        fields = ['name', 'host', 'port', 'username']
+        fields = ['type', 'name', 'host', 'port', 'username']

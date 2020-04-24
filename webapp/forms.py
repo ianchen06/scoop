@@ -1,6 +1,8 @@
 from django import forms
 from django.core.validators import RegexValidator
 
+from dal import autocomplete
+
 from .models import Connection
 
 class ConnectionForm(forms.ModelForm):
@@ -8,6 +10,8 @@ class ConnectionForm(forms.ModelForm):
         model = Connection
         fields = '__all__'
         widgets = {
+                'authorized_users': autocomplete.ModelSelect2Multiple(url='user-autocomplete',attrs={'data-container-css-class': ''}),
+                'authorized_destinations': autocomplete.ModelSelect2Multiple(url='destination-autocomplete',attrs={'data-container-css-class': ''}),
                 'password': forms.PasswordInput()
                 }
     def __init__(self, *args, **kwargs):
@@ -21,6 +25,7 @@ class ConnectionForm(forms.ModelForm):
         if current_user:
             if not current_user.is_superuser:
                 self.fields['authorized_users'].disabled = True
+                self.fields['authorized_destinations'].disabled = True
             else:
                 self.fields['password'].required = False
 

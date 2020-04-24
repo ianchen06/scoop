@@ -10,6 +10,13 @@ class ConnectionType(models.Model):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.name
 
+class Destination(models.Model):
+    name = models.CharField(max_length=255, primary_key=True)
+
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.name
+
 class Connection(models.Model):
     name = models.CharField(max_length=255)
     type = models.ForeignKey(ConnectionType, on_delete=models.CASCADE)
@@ -18,6 +25,7 @@ class Connection(models.Model):
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     authorized_users = models.ManyToManyField(User)
+    authorized_destinations = models.ManyToManyField(Destination)
     
     def get_absolute_url(self):
         return reverse('connection-detail', kwargs={'pk': self.pk})
