@@ -1,12 +1,104 @@
 {% extends '_base.html' %}
 {% block content %}
 <div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">Scoop</h1>
-    <p class="lead">Self-service batch data ingestion</p>
-    <hr class="my-4">
-    <p>Fast, Easy, Secure way to ingest your data.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Create Job</a>
+  <div class="row text-center">
+    <div class="col-4">
+      <div class="card" id="source-card">
+        <div data-toggle="modal" data-target="#source" class="card-body">
+          <i class="fas fa-plus-circle fa-2x"></i>
+          <div>
+            <a class="stretched-link" href="#">Add Source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"><i class="fas fa-arrow-right fa-6x text-success"></i></div>
+    <div class="col-4">
+      <div class="card" id="destination-card">
+        <div class="card-body">
+          <i class="fas fa-plus-circle fa-2x"></i>
+          <div>
+            <a data-toggle="modal" data-target="#destination" class="stretched-link" href="#">Add Destination</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="destination" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-cols-1 row-cols-md-3">
+          <div class="col mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Hive</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="source" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-cols-1 row-cols-md-3">
+          <div class="col mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">MySQL</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">HDFS</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">MongoDB</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block footer %}
+<script charset="utf-8">
+  $("#source .card").click((e) => {
+    $("#source-card .card-body").html('<p>' + e.target.innerText + '</p>')
+    $('#source').modal('hide')
+  })
+  $("#destination .card").click((e) => {
+    $("#destination-card .card-body").html('<p>' + e.target.innerText + '</p>')
+    $('#destination').modal('hide')
+  })
+</script>
 {% endblock %}
