@@ -78,3 +78,11 @@ class ConnectionUpdate(UpdateView):
 class ConnectionDelete(DeleteView):
     model = Connection
     success_url = reverse_lazy('connection-list')
+
+def task_create(request):
+    source = request.GET.get("source").lower()
+    destination = request.GET.get("destination").lower()
+    return redirect('task-create-step1')
+
+def task_create_step1(request):
+    return render(request, 'task_create_step1.html', {})

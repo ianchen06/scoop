@@ -12,17 +12,24 @@
         </div>
       </div>
     </div>
-    <div class="col-4"><i class="fas fa-arrow-right fa-6x text-success"></i></div>
+    <div class="col-4"><i class="fas fa-arrow-right fa-4x text-success"></i></div>
     <div class="col-4">
       <div class="card" id="destination-card">
-        <div class="card-body">
+        <div data-toggle="modal" data-target="#destination" class="card-body">
           <i class="fas fa-plus-circle fa-2x"></i>
           <div>
-            <a data-toggle="modal" data-target="#destination" class="stretched-link" href="#">Add Destination</a>
+            <a class="stretched-link" href="#">Add Destination</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="row text-center">
+    <div class="col"></div>
+    <div class="col">
+      <a id="create-task-btn" class="btn btn-primary" href="{% url 'task-create' %}?">Create Task</a>
+    </div>
+    <div class="col"></div>
   </div>
 </div>
 
@@ -92,13 +99,25 @@
 {% endblock %}
 {% block footer %}
 <script charset="utf-8">
+  const setTaskCreateParam = (field, value) => {
+    const qs = new URL($('#create-task-btn').attr('href'), window.location.origin).search
+    const urlParams = new URLSearchParams(qs)
+    if (urlParams.has(field)) {
+      urlParams.delete(field)
+    }
+    urlParams.append(field, value)
+    const createUrl = "{% url 'task-create' %}?" + urlParams.toString()
+    $('#create-task-btn').attr('href', createUrl)
+  }
   $("#source .card").click((e) => {
     $("#source-card .card-body").html('<p>' + e.target.innerText + '</p>')
     $('#source').modal('hide')
+    setTaskCreateParam('source', e.target.innerText)
   })
   $("#destination .card").click((e) => {
     $("#destination-card .card-body").html('<p>' + e.target.innerText + '</p>')
     $('#destination').modal('hide')
+    setTaskCreateParam('destination', e.target.innerText)
   })
 </script>
 {% endblock %}

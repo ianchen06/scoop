@@ -10,4 +10,5 @@ urlpatterns = [
     path('connections/<int:pk>/', v.ConnectionDetailView.as_view(), name='connection-detail'),
     path('connections/<int:pk>/update/', v.ConnectionUpdate.as_view(), name='connection-update'),
     path('connections/<int:pk>/delete/', v.ConnectionDelete.as_view(), name='connection-delete'),
+    path('tasks/create/', v.task_create, name='task-create'),
 ]
